@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+  owasp-zap:
+    image: owasp-scan:dev
+    command: ['https://www.test.com', 'full']
+    volumes:
+      - ./reports:/zap/wrk/reports
