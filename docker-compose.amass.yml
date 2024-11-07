@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  amass:
+    image: caffix/amass
+    command: enum -d example.com
+    volumes:
+      - amass:/.config/amass/
+volumes:
+  amass:
+    external: true

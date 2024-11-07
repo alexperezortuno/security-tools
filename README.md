@@ -7,5 +7,5 @@ docker build -t owasp-scan:dev .
 ```
 
 ```bash
-docker run --rm owasp-scan:dev https://test.com
+docker run --rm owasp-scan:dev https://example.com
 ```
