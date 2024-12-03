@@ -2,7 +2,7 @@ version: "3.7"
 services:
   amass:
     image: caffix/amass
-    command: enum -d example.com
+    command: ["enum", "-d", $AMSS_DOMAIN]
     volumes:
       - amass:/.config/amass/
 volumes:
