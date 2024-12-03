@@ -1,9 +1,9 @@
 # security-tools
 This repository has a series of scripts to detect vulnerabilities in applications and websites
 
-## Example of usage
+## OWASP
 ```bash
-docker build -t owasp-scan:dev .
+docker build -f Dockerfile.owasp -t owasp-scan:dev .
 ```
 
 ```bash
