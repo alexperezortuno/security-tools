@@ -2,6 +2,6 @@ version: "3.7"
 services:
   owasp-zap:
     image: owasp-scan:dev
-    command: ['https://www.test.com', 'full']
+    command: [$OWASP_HOST, 'full']
     volumes:
       - ./reports:/zap/wrk/reports

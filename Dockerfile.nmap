@@ -1,0 +1,12 @@
+# Usa una imagen base mínima con Nmap
+FROM instrumentisto/nmap:latest
+
+USER root
+
+RUN apk add --no-cache bash bind-tools libxslt
+
+COPY nmap_scan.sh /nmap_scan.sh
+
+RUN chmod +x nmap_scan.sh && mkdir /reports
+
+ENTRYPOINT ["/nmap_scan.sh"]

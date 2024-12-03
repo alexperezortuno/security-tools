@@ -8,3 +8,6 @@ out
 gen
 *.html
 zap.yaml
+.env
+nmap-reports/*
+reports/*
