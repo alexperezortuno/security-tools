@@ -7,7 +7,7 @@ docker build -t owasp-scan:dev .
 ```
 
 ```bash
-docker run --rm owasp-scan:dev https://example.com
+docker run --rm owasp-scan:dev https://google.com
 ```
 
 ### Nmap
