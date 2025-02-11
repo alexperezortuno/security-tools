@@ -1,0 +1,8 @@
+version: '3'
+services:
+  ip-scan:
+    container_name: ipscan-docker
+    image: ipscan-docker:dev
+    command: [$IP_SCAN]
+    stdin_open: true
+    tty: true

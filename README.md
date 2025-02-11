@@ -39,3 +39,13 @@ docker build -f Dockerfile.sherlock -t sherlock-docker:dev .
 ```bash
 docker run --rm sherlock-docker example
 ```
+
+### IP Scan
+
+```bash
+docker build -f Dockerfile.ipscan -t ipscan-docker:dev .
+```
+
+```bash
+docker run --rm ipscan-docker 47.82.9.50
+```

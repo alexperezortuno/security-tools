@@ -1,0 +1,11 @@
+FROM ubuntu:latest
+
+USER root
+
+RUN apt-get update && apt-get install -y curl traceroute nmap geoip-bin whois jq
+
+COPY ip_scan.sh /ip_scan.sh
+
+RUN chmod +x ip_scan.sh
+
+ENTRYPOINT ["/ip_scan.sh"]
