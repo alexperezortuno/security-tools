@@ -4,5 +4,7 @@ services:
     container_name: ipscan-docker
     image: ipscan-docker:dev
     command: [$IP_SCAN]
+    env_file:
+      - .env
     stdin_open: true
     tty: true
