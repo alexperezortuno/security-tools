@@ -2,9 +2,10 @@ FROM ubuntu:latest
 
 USER root
 
-RUN apt-get update && apt-get install -y curl traceroute nmap geoip-bin whois jq
+RUN apt-get update && apt-get install -y curl traceroute nmap geoip-bin whois jq tor proxychains
 
 COPY ip_scan.sh /ip_scan.sh
+COPY proxychains.conf /etc/proxychains.conf
 
 RUN chmod +x ip_scan.sh
 

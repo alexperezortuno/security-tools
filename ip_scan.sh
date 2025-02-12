@@ -7,19 +7,21 @@ if [ -z "$IP" ]; then
     exit 1
 fi
 
+proxychains curl -s https://ifconfig.me | grep -o "Congratulations.*"
+
 echo "🔍 Analyzing IP: $IP ..."
 
 echo "📌 WHOIS Information:"
-whois "$IP" | grep -E 'OrgName|Country|NetRange'
+proxychains whois "$IP" | grep -E 'OrgName|Country|NetRange'
 
 echo "🌍 Geolocation:"
-geoiplookup "$IP"
+proxychains geoiplookup "$IP"
 
 echo "🛰️ Route (traceroute):"
-traceroute -n "$IP"
+proxychains traceroute -n "$IP"
 
 echo "🛡️ Open ports (Nmap):"
-nmap -Pn -p- --min-rate=1000 "$IP"
+proxychains nmap -Pn -p- --min-rate=1000 "$IP"
 
 echo "⚠️ Checking in AbuseIPDB..."
 curl -G https://api.abuseipdb.com/api/v2/check --data-urlencode "ipAddress=$IP" -H "Key: $ABUSEIPDB_API_KEY" | jq .

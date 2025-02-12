@@ -4,6 +4,8 @@ services:
     container_name: ipscan-docker
     image: ipscan-docker:dev
     command: [$IP_SCAN]
+    volumes:
+      - ./proxychains.conf:/etc/proxychains.conf
     env_file:
       - .env
     stdin_open: true
