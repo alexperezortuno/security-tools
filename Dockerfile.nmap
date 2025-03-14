@@ -1,9 +1,8 @@
 # Usa una imagen base mínima con Nmap
-FROM instrumentisto/nmap:latest
+#FROM instrumentisto/nmap:latest
+FROM alpine:latest
 
-USER root
-
-RUN apk add --no-cache bash bind-tools libxslt
+RUN apk add --no-cache nmap bash bind-tools libxslt
 
 COPY nmap_scan.sh /nmap_scan.sh
 

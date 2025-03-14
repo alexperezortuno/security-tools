@@ -17,6 +17,14 @@ docker build -f Dockerfile.nmap -t nmap-docker:dev .
 ```
 
 ```bash
+docker build -f Dockerfile.nmap2 -t nmap-docker:dev2 .
+```
+
+```bash
+export $(grep -v '^#' .env | xargs) && docker run --rm -v $(pwd)/nmap-reports:/reports -it nmap-docker:dev $NMAP_DOMAIN
+```
+
+```bash
 docker run --rm nmap-docker example.com
 ```
 
@@ -50,6 +58,15 @@ docker build -f Dockerfile.ipscan -t ipscan-docker:dev .
 docker run --rm ipscan-docker:dev <IP>
 ```
 
+---
+
+### Get endpoints
+A useful one-liner that extracts all API endpoints from JavaScript files.
+
+```bash
+curl -s <URL> | grep -Po "(\/)((?:[a-zA-Z\-_\:\.0-9\{\}]+))(\/)*((?:[a-zA-Z\-_\:\.0-9\{\}]+))(\/)((?:[a-zA-Z\-_\/\:\.0-9\{\}]+))" | sort -u
+```
+https://piensoymascotas.com/af84a377c5e5.9f17ebd3.eu-west-1.captcha.awswaf.com/af84a377c5e5/eb24a364ab44/10211229dfda/captcha.js
 ---
 
 ### Check files
