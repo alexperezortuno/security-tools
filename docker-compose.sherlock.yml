@@ -3,7 +3,7 @@ services:
     sherlock:
         container_name: sherlock-docker
         image: sherlock-docker:dev
-        command: [$SHERLOCK_USERNAME]
+        command: [$SHERLOCK_USERNAME, "-o", "/reports/$SHERLOCK_USERNAME.json"]
         volumes:
         - ./sherlock-reports:/reports
         stdin_open: true
