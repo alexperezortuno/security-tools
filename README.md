@@ -13,7 +13,7 @@ docker run --rm owasp-scan:dev https://example.com
 ### Nmap
 
 ```bash
-docker build -f Dockerfile.nmap -t nmap-docker:dev .
+docker build -f Dockerfile.nmap -t nmap-docker:latest .
 ```
 
 ```bash
@@ -31,7 +31,7 @@ docker run --rm nmap-docker example.com
 ### Nikto
 
 ```bash
-docker build -f Dockerfile.nikto -t nikto-docker:dev .
+docker build -f Dockerfile.nikto -t nikto:dev .
 ```
 
 ```bash
@@ -41,7 +41,7 @@ docker run --rm nikto-docker example.com
 ### Sherlock
 
 ```bash
-docker build -f Dockerfile.sherlock -t sherlock-docker:dev .
+docker build -f Dockerfile.sherlock -t sherlock-docker:latest .
 ```
 
 ```bash
@@ -66,7 +66,7 @@ A useful one-liner that extracts all API endpoints from JavaScript files.
 ```bash
 curl -s <URL> | grep -Po "(\/)((?:[a-zA-Z\-_\:\.0-9\{\}]+))(\/)*((?:[a-zA-Z\-_\:\.0-9\{\}]+))(\/)((?:[a-zA-Z\-_\/\:\.0-9\{\}]+))" | sort -u
 ```
-https://piensoymascotas.com/af84a377c5e5.9f17ebd3.eu-west-1.captcha.awswaf.com/af84a377c5e5/eb24a364ab44/10211229dfda/captcha.js
+
 ---
 
 ### Check files
