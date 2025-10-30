@@ -2,12 +2,22 @@
 
 function remove_files() {
   # remove files xml
-  rm /reports/report_"$domain"_*.xml
-  rm /reports/report_"$domain"_*.nmap
-  rm /reports/report_"$domain"_*.gnmap
+    if ls /reports/report_"$domain"_*.xml 1> /dev/null 2>&1; then
+      rm /reports/report_"$domain"_*.xml
+    fi
+
+    if ls /reports/report_"$domain"_*.nmap 1> /dev/null 2>&1; then
+      rm /reports/report_"$domain"_*.nmap
+    fi
+
+    if ls /reports/report_"$domain"_*.gnmap 1> /dev/null 2>&1; then
+      rm /reports/report_"$domain"_*.gnmap
+    fi
 }
 
-rm /reports/report_"$domain"_*.html
+if ls  /reports/report_"$domain"_*.html 1> /dev/null 2>&1; then
+  rm /reports/report_"$domain"_*.html
+fi
 remove_files
 
 # Validar entrada
