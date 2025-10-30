@@ -4,4 +4,4 @@ services:
     image: owasp-scan:dev
     command: [$OWASP_HOST, 'full']
     volumes:
-      - ./owasp-reports:/zap/wrk/reports
+      - ./owasp-reports:/zap/wrk/reports:rw
