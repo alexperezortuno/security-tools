@@ -7,31 +7,31 @@ docker build -f Dockerfile.owasp -t owasp-scan:dev .
 ```
 
 ```bash
-docker run --rm owasp-scan:dev https://example.com
+docker run --rm -v $(pwd)/owasp-reports:/zap/wrk/reports:rw owasp-scan:dev $OWASP_HOST full
 ```
 
 ### Nmap
 
 ```bash
-docker build -f Dockerfile.nmap -t nmap-docker:latest .
+docker build -f Dockerfile.nmap -t nmap-docker:local .
 ```
 
 ```bash
-docker build -f Dockerfile.nmap2 -t nmap-docker:dev2 .
+docker build -f Dockerfile.nmap2 -t nmap-docker:local2 .
 ```
 
 ```bash
-export $(grep -v '^#' .env | xargs) && docker run --rm -v $(pwd)/nmap-reports:/reports -it nmap-docker:dev $NMAP_DOMAIN
+export $(grep -v '^#' .env | xargs) && docker run --rm -v $(pwd)/nmap-reports:/reports -it nmap-docker:ocal $NMAP_DOMAIN
 ```
 
 ```bash
-docker run --rm nmap-docker example.com
+docker run --rm -it -v $(pwd)/nmap-reports:/reports:rw nmap-docker:local $NMAP_DOMAIN
 ```
 
 ### Nikto
 
 ```bash
-docker build -f Dockerfile.nikto -t nikto:dev .
+docker build -f Dockerfile.nikto -t nikto:local .
 ```
 
 ```bash
