@@ -1,7 +1,7 @@
 version: '3'
 services:
   nmap:
-    image: nmap-docker:dev
+    image: nmap-docker:local
     command: [$NMAP_DOMAIN]
     volumes:
       - ./nmap-reports:/reports
