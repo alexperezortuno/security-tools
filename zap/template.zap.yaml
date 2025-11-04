@@ -1,0 +1,76 @@
+env:
+  contexts:
+    - name: baseline
+      urls:
+        - <URL>
+      includePaths:
+        - '<URL>.*'
+      excludePaths:
+        - '<URL>/logout.*'
+      authentication:
+        method: manual
+      users:
+        - name: defaultUser
+          credentials:
+            username: testuser
+            password: testpass
+  parameters:
+    failOnError: true
+    progressToStdout: true
+
+jobs:
+  - type: passiveScan-config
+    parameters:
+      enableTags: true
+      maxAlertsPerRule: 20
+
+  - type: spider
+    parameters:
+      context: baseline
+      user: defaultUser
+      url: <URL>
+      maxDuration: 5
+
+  - type: activeScan
+    parameters:
+      context: baseline
+      user: defaultUser
+      url: <URL>
+      policy: Default Policy
+      maxRuleDurationInMins: 5
+      maxScanDurationInMins: 20
+      scanHeadersAllRequests: true
+
+  - type: passiveScan-wait
+    parameters:
+      maxDuration: 3
+
+  # Report HTML
+  - type: report
+    parameters:
+      template: traditional-html
+      reportTitle: ZAP Full Scan Report
+      reportDir: /zap/wrk/
+      reportFile: report.html
+      reportDescription: 'Full scan with spider and active scan'
+
+  # Report valid JSON
+  - type: report
+    parameters:
+      template: traditional-json
+      reportTitle: ZAP JSON Report
+      reportDir: /zap/wrk/
+      reportFile: report.json
+
+  # Report SARIF for CI/CD
+  - type: report
+    parameters:
+      template: sarif-json
+      reportTitle: ZAP SARIF Report
+      reportDir: /zap/wrk/
+      reportFile: report.sarif
+
+  - type: outputSummary
+    parameters:
+      format: Long
+      summaryFile: /zap/wrk/zap_summary.json

@@ -47,6 +47,7 @@ docker build -f Dockerfile.sherlock -t sherlock-docker:local .
 ```bash
 export $(grep -v '^#' .env | xargs) && docker run --rm sherlock-docker:local $SHERLOCK_USERNAME
 ```
+---
 
 ### IP Scan
 
@@ -56,6 +57,14 @@ docker build -f Dockerfile.ipscan -t ipscan-docker:local .
 
 ```bash
 docker compose -f docker-compose.ipscan.yml up -d
+```
+
+---
+
+### ZAP Scan
+
+```bash
+docker run -v $(pwd)/zap/:/zap/wrk/:rw -t zaproxy/zap-stable zap.sh -cmd -autorun /zap/wrk/zap.yaml
 ```
 
 ---

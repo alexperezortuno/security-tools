@@ -7,7 +7,9 @@
 out
 gen
 *.html
-zap.yaml
+zap/zap.yaml
 .env
 nmap-reports/*
 reports/*
+zap/*.yml
+zap/*.json
