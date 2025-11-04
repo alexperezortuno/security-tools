@@ -3,11 +3,11 @@ This repository has a series of scripts to detect vulnerabilities in application
 
 ## OWASP
 ```bash
-docker build -f Dockerfile.owasp -t owasp-scan:dev .
+docker build -f Dockerfile.owasp -t owasp-scan:local .
 ```
 
 ```bash
-docker run --rm -v $(pwd)/owasp-reports:/zap/wrk/reports:rw owasp-scan:dev $OWASP_HOST full
+export $(grep -v '^#' .env | xargs) && docker run --rm -v $(pwd)/owasp-reports:/zap/wrk/reports:rw owasp-scan:local $OWASP_HOST full
 ```
 
 ### Nmap
@@ -21,11 +21,11 @@ docker build -f Dockerfile.nmap2 -t nmap-docker:local2 .
 ```
 
 ```bash
-export $(grep -v '^#' .env | xargs) && docker run --rm -v $(pwd)/nmap-reports:/reports -it nmap-docker:ocal $NMAP_DOMAIN
+export $(grep -v '^#' .env | xargs) && docker run --rm -v $(pwd)/nmap-reports:/reports -it nmap-docker:local $NMAP_DOMAIN
 ```
 
 ```bash
-docker run --rm -it -v $(pwd)/nmap-reports:/reports:rw nmap-docker:local $NMAP_DOMAIN
+docker run --rm -it -v $(pwd)/nmap-reports:/reports:rw nmap-docker:local example.com
 ```
 
 ### Nikto
@@ -35,27 +35,27 @@ docker build -f Dockerfile.nikto -t nikto:local .
 ```
 
 ```bash
-docker run --rm nikto-docker example.com
+export $(grep -v '^#' .env | xargs) && docker run --rm nikto:local $NIKTO_DOMAIN
 ```
 
 ### Sherlock
 
 ```bash
-docker build -f Dockerfile.sherlock -t sherlock-docker:latest .
+docker build -f Dockerfile.sherlock -t sherlock-docker:local .
 ```
 
 ```bash
-docker run --rm sherlock-docker example
+export $(grep -v '^#' .env | xargs) && docker run --rm sherlock-docker:local $SHERLOCK_USERNAME
 ```
 
 ### IP Scan
 
 ```bash
-docker build -f Dockerfile.ipscan -t ipscan-docker:dev .
+docker build -f Dockerfile.ipscan -t ipscan-docker:local .
 ```
 
 ```bash
-docker run --rm ipscan-docker:dev <IP>
+docker compose -f docker-compose.ipscan.yml up -d
 ```
 
 ---
