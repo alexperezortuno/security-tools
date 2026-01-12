@@ -1,0 +1,9 @@
+version: '3'
+services:
+  nikto:
+    image: nikto:local
+    command: [$NIKTO_DOMAIN]
+    volumes:
+      - ./nikto-reports:/reports
+    stdin_open: true
+    tty: true

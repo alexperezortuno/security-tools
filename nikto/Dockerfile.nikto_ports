@@ -1,0 +1,17 @@
+FROM perl:slim
+
+RUN apt-get update && \
+    apt-get install -y git curl nmap && \
+    git clone https://github.com/sullo/nikto.git /opt/nikto && \
+    ln -s /opt/nikto/program/nikto.pl /usr/local/bin/nikto && \
+    chmod +x /usr/local/bin/nikto
+
+WORKDIR /scanner
+
+COPY scan_ports.sh nmap_filter.sh raw_targets.txt ports.txt /scanner/
+
+RUN chmod +x scan_ports.sh nmap_filter.sh
+
+VOLUME ["/scanner/results"]
+
+CMD ["/bin/bash"]

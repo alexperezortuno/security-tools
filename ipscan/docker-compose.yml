@@ -1,0 +1,33 @@
+services:
+  tor_proxy:
+    image: dperson/torproxy
+    container_name: tor_proxy
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -s --socks5 localhost:9050 https://check.torproject.org | grep -q Congratulations || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 60
+      start_period: 60s
+    networks:
+      security-net:
+        ipv4_address: 172.20.0.2
+
+  ipscan:
+    image: ipscan-docker:local
+    command: [$IP_SCAN]
+    environment:
+      - ABUSEIPDB_API_KEY=${ABUSEIPDB_API_KEY}
+    volumes:
+      - ./reports:/reports:rw
+    depends_on:
+      tor_proxy:
+        condition: service_healthy
+    networks:
+      - security-net
+
+networks:
+  security-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
