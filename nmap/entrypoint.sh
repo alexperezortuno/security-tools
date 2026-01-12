@@ -1,5 +1,11 @@
 #!/bin/bash
 
+set -e
+
+HOST_UID=${HOST_UID:-1000}
+HOST_GID=${HOST_GID:-1000}
+HOST_USER=${HOST_USER:-hostuser}
+
 function remove_files() {
   # remove files xml
     if ls /reports/report_"$domain"_*.xml 1> /dev/null 2>&1; then
@@ -16,6 +22,7 @@ function remove_files() {
 }
 
 function change_permissions() {
+  chown -R "$HOST_UID":"$HOST_GID" /reports
   chmod 644 /reports/report_"$domain"_*.html
 }
 

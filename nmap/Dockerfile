@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add --no-cache nmap nmap-scripts bash bind-tools libxslt
+RUN apk add --no-cache nmap ok bash bind-tools libxslt
 
 COPY nmap_scan.sh /nmap_scan.sh
 
