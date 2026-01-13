@@ -10,7 +10,7 @@ gen
 *.nmap
 *.gnamp
 *.xml
-zap/zap.yaml
+zap/zap/zap.yaml
 .env
 nmap/nmap-reports/*
 reports/*
