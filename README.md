@@ -1,3 +1,6 @@
+![info](./info.png)
+
+
 # security-tools
 
 This GitHub repository compiles various scripts and tools designed to identify vulnerabilities in websites and applications. It provides technical resources that facilitate security analysis, such as API endpoint extraction and suspicious file detection. The platform integrates popular utilities like Docker, VirtualBox, and nmap to run tests in controlled and secure environments. Additionally, the project includes practical guides for inspecting hidden code and analyzing potentially malicious PDF documents. This toolset is primarily developed in Shell scripting and is distributed under an open-source license for the cybersecurity community.
