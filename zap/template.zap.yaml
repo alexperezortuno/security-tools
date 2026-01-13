@@ -2,11 +2,11 @@ env:
   contexts:
     - name: baseline
       urls:
-        - <URL>
+        - https://example.com
       includePaths:
-        - '<URL>.*'
+        - 'https://example.com.*'
       excludePaths:
-        - '<URL>/logout.*'
+        - 'https://example.com/logout.*'
       authentication:
         method: manual
       users:
@@ -28,14 +28,14 @@ jobs:
     parameters:
       context: baseline
       user: defaultUser
-      url: <URL>
+      url: https://example.com
       maxDuration: 5
 
   - type: activeScan
     parameters:
       context: baseline
       user: defaultUser
-      url: <URL>
+      url: https://example.com
       policy: Default Policy
       maxRuleDurationInMins: 5
       maxScanDurationInMins: 20
