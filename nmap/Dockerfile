@@ -1,9 +1,16 @@
 FROM alpine:latest
 
-RUN apk add --no-cache nmap ok bash bind-tools libxslt
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+ARG USER_NAME=appuser
 
-COPY nmap_scan.sh /nmap_scan.sh
+RUN addgroup -g ${GROUP_ID} ${USER_NAME} && \
+    adduser -u ${USER_ID} -G ${USER_NAME} -D ${USER_NAME}
 
-RUN chmod +x nmap_scan.sh && mkdir /reports
+RUN apk add --no-cache nmap bash bind-tools nmap-scripts libxslt
 
-ENTRYPOINT ["/nmap_scan.sh"]
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod +x entrypoint.sh && mkdir /reports
+
+ENTRYPOINT ["/entrypoint.sh"]

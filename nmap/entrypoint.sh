@@ -1,10 +1,8 @@
 #!/bin/bash
 
-set -e
-
 HOST_UID=${HOST_UID:-1000}
 HOST_GID=${HOST_GID:-1000}
-HOST_USER=${HOST_USER:-hostuser}
+HOST_USER=${HOST_USER:-appuser}
 
 function remove_files() {
   # remove files xml

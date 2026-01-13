@@ -1,9 +1,9 @@
 ### IP Scan
 
 ```bash
-docker build -f Dockerfile.ipscan -t ipscan-docker:local .
+docker build -t ipscan-docker:local .
 ```
 
 ```bash
-docker compose -f docker-compose.ipscan.yml up -d
+docker compose -f docker-compose.yml up -d
 ```

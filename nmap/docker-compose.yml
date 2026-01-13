@@ -1,7 +1,8 @@
-version: '3'
 services:
   nmap:
-    image: nmap-docker:local
+    build:
+        context: .
+    container_name: nmap_local
     command: [$NMAP_DOMAIN]
     volumes:
       - ./nmap-reports:/reports
