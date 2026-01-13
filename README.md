@@ -2,25 +2,58 @@
 
 This GitHub repository compiles various scripts and tools designed to identify vulnerabilities in websites and applications. It provides technical resources that facilitate security analysis, such as API endpoint extraction and suspicious file detection. The platform integrates popular utilities like Docker, VirtualBox, and nmap to run tests in controlled and secure environments. Additionally, the project includes practical guides for inspecting hidden code and analyzing potentially malicious PDF documents. This toolset is primarily developed in Shell scripting and is distributed under an open-source license for the cybersecurity community.
 
-1. Web Application Vulnerabilities
-   The repository integrates fundamental web security analysis tools such as OWASP, ZAP (OWASP Zed Attack Proxy), and Nikto. These scripts aim to detect:
-   - Server misconfigurations: Through Nikto, which identifies dangerous files and outdated programs.
-   - Common OWASP Top 10 vulnerabilities: Such as injections, Cross-Site Scripting (XSS), and authentication flaws, using ZAP.
-   - Endpoint exposure: Includes a specific script ("one-liner") to extract all API endpoints from JavaScript files, helping to uncover hidden paths that may be unprotected.
+### 1. Endpoint Extraction (`utils`)
+This function is designed for the **passive discovery** of web applications by analyzing client-side code files.
 
-2. Network Weaknesses and Attack Surface
-   Using nmap, ipscan, and nikto_ports, the scripts are designed to:
-   - Open ports and vulnerable services: Identify which entry points a system has and whether the services running on them have known vulnerabilities.
-   - Reconnaissance and Enumeration: Tools like Sherlock and Amass (mentioned in Docker configuration files) suggest searching for subdomains and social media presence for social engineering attacks or infrastructure mapping.
+* **Purpose:** To locate hidden API paths in JavaScript files.
 
-3. Malicious Files and Hidden Code
-   The repository dedicates a section to inspecting suspicious files using:
-   - Malware Detection: Using the VirusTotal API to scan files.
-   - Analysis of Suspicious PDFs: Tools like pdfid to find malicious scripts embedded in documents.
-   - Inspection of Hidden Data: Using hexdump and strings to visualize hidden code or embedded text in binary files that is not visible to the naked eye.
+* **Main Command:**
+  ```bash
+  curl -s <URL> | grep -Po "(\/)((?:[a-zA-Z\-_\:\.0-9\{\}]+))(\/)*((?:[a-zA-Z\-_\:\.0-9\{\}]+))(\/)((?:[a-zA-Z\-/\:\.0-9\{\}]+))" | sort -u
+   ```
 
-4. Safe Execution Analysis
-   Beyond passive detection, the repository offers methods to interact with potentially dangerous files in a controlled manner using Docker, Firejail, or VirtualBox. This allows you to observe a file's behavior without putting the host system at risk.
+* **Utility:** Helps map the attack surface of a web application without directly interacting with the backend.
+
+### 2. Suspicious File Analysis (`files` / `utils`)
+A set of scripts to inspect potentially malicious files without compromising the host system.
+
+* **Malware Detection:** Integration with the **VirusTotal API** for fast scanning.
+
+* **Static Analysis:**
+
+* `pdfid`: Identifies scripts or automated actions in PDF documents.
+* `strings` and `hexdump`: Allow you to view **embedded text** and **hidden code** in binary files.
+
+* **Secure Execution:** Instructions for using **Docker** (sandbox), **Firejail** (application isolation), or **VirtualBox** to open files in controlled environments.
+
+### 3. Network and Port Scanning (`nmap`, `ipscan`, `nikto_ports`)
+Modules focused on identifying active services and devices on a network.
+
+* **Nmap:** Standard tool for host discovery and security auditing.
+
+* **Nikto_ports:** Extension for scanning specific ports for web server vulnerabilities.
+
+* **Objective:** Identify **open ports** and outdated services that could be exploited.
+
+### 4. Web Application Security (ZAP, OWASP, Nikto)
+Tools designed to find flaws in the logic and configuration of websites.
+
+* **ZAP (OWASP Zed Attack Proxy):** Dynamic scanner to detect vulnerabilities in the **OWASP Top 10** (such as SQL injection or XSS).
+
+* **Nikto:** Scans web servers for dangerous files and outdated server software.
+
+### 5. OSINT and Social Reconnaissance (Sherlock)
+* **Purpose:** To search for the presence of a specific username across multiple social networks and web platforms.
+
+* **Utility:** Essential for social engineering or digital footprint investigations.
+
+***
+
+**Note on external information:** Although the sources list the tools and some commands, the details about the "passive reconnaissance" methodology or specific examples of vulnerabilities from the "OWASP Top 10" are general cybersecurity concepts that are not fully described in the original text. It is recommended to check the flags for each command in the official documentation for Nmap, ZAP, and Nikto.
+
+To visualize your project, think of it as a **security locksmith's toolkit**: you have everything from high-powered magnifying glasses to examine suspicious keys (file analysis), to detailed maps of all the entrances to a fortress (nmap/zap), and a log of who has been seen in which clubs in the city (Sherlock).
+
+---
 
 ### Get endpoints
 A useful one-liner that extracts all API endpoints from JavaScript files.
