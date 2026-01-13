@@ -19,3 +19,5 @@ zap/*.json
 nikto_ports/results/*.txt
 nikto_ports/raw_targets.txt
 nikto_ports/targets.txt
+zap/zap/*.html
+zap/zap/*.json
