@@ -16,3 +16,5 @@ nmap/nmap-reports/*
 reports/*
 zap/*.yml
 zap/*.json
+nikto_ports/results/*.txt
+nikto_ports/raw_targets.txt
