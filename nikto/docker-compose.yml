@@ -1,7 +1,9 @@
 version: '3'
 services:
   nikto:
-    image: nikto:local
+    build:
+      context: .
+    container_name: nikto_local
     command: [$NIKTO_DOMAIN]
     volumes:
       - ./nikto-reports:/reports

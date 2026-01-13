@@ -1,6 +1,8 @@
 services:
   owasp-zap:
-    image: owasp-scan:dev
+    build:
+      context: .
+    container_name: owasp_zap_local
     command: [$OWASP_HOST, 'full']
     volumes:
       - ./owasp-reports:/zap/wrk/reports:rw
